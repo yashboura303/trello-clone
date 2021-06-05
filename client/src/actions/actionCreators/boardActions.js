@@ -18,18 +18,6 @@ export const fetchBoardById = (id) => (dispatch) => {
     })
 }
 
-export const updateBoardById = (id, params) => (dispatch) => {
-  dispatch({ type: ACTIONS.MAKE_REQUEST_BOARD })
-  axios
-    .patch(BASE_URL + id, params)
-    .then((res) => {
-      dispatch({ type: ACTIONS.UPDATE_BOARD, payload: { board: res.data } })
-    })
-    .catch((e) => {
-      dispatch({ type: ACTIONS.ERROR_BOARD, payload: { error: e.message } })
-    })
-}
-
 export const fetchListsFromBoard = (id) => (dispatch) => {
   dispatch({ type: ACTIONS.MAKE_REQUEST_LIST })
   axios

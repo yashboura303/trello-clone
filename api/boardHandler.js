@@ -43,20 +43,4 @@ router.get('/:id/cards', async (req, res, next) => {
     }
 });
 
-// update board content based on id
-router.patch('/:id', async (req, res, next) => {
-    const _id = req.params.id;
-    const updates = Object.keys(req.body);
-    const allowedUpdates = ['name', 'image'];
-    const isValidOperation = updates.every(update => allowedUpdates.includes(update));
-    if (!isValidOperation) return res.status(400).send({ error: 'Invalid updates!' });
-    try {
-        const board = await Board.findOneAndUpdate({ _id }, req.body, { new: true, runValidators: true });
-        if (!board) return res.status(404).send({ error: 'Board not found!' });
-        res.send(board);
-    } catch (error) {
-        next(error);
-    }
-});
-
 module.exports = router;

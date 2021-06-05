@@ -74,6 +74,7 @@ export default function Board() {
   }, [dispatch, id, error])
 
   useEffect(() => {
+    console.log(initialData)
     if (!listLoading && !cardLoading) {
       const prevState = { tasks: {}, columns: {}, columnOrder: [] }
       const getTaskIds = (id) => {
